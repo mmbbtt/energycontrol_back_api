@@ -21,6 +21,8 @@ import energycontrol.back.api.MSourceService;
 import energycontrol.back.entities.MSource;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 import mbt.utilities.ActionResult;
 import mbt.utilities.EResult;
 import mbt.utilities.GenericActionResult;
@@ -33,9 +35,15 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	
 	@ApiOperation(
 		value = "Listado del maestro de orígenes de datos",
+		notes = "Devuelve todo el maestro de orígenes de datos",
+		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "List"
 	    )
+	@ApiResponses(value = { 
+	    @ApiResponse(code = 200, message = "Operación ejecutada correctamente"),
+		@ApiResponse(code = 500, message = "Se ha producido un error interno al ejecutar la operación")
+		})
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getMSources() 
@@ -60,10 +68,17 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	}
 	
 	@ApiOperation(
-		value = "Devuelve el origen de datos maestro con código igual al pasado por argumento",
+		value = "Origen de datos maestro por código",
+		notes = "Devuelve el origen de datos maestro con código igual al pasado por argumento",
+		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "String"
 	    )
+	@ApiResponses(value = { 
+	    @ApiResponse(code = 200, message = "Operación ejecutada correctamente"),
+	    @ApiResponse(code = 404, message = "Origen de datos maestro no encontrado"),
+		@ApiResponse(code = 500, message = "Se ha producido un error interno al ejecutar la operación")
+		})
 	@GET
 	@Path("/{code}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -97,9 +112,16 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	
 	@ApiOperation(
 		value = "Crea un nuevo origen de datos maestro",
+		notes = "No debe exitir ya otro origen de datos maestro con el mismo código",
+		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "String"
 	    )
+	@ApiResponses(value = { 
+	    @ApiResponse(code = 200, message = "Operación ejecutada correctamente"),
+	    @ApiResponse(code = 412, message = "El origen de datos maestro a crear ya existe"),
+		@ApiResponse(code = 500, message = "Se ha producido un error interno al ejecutar la operación")
+		})
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -152,9 +174,15 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	
 	@ApiOperation(
 		value = "Actualiza el origen de datos maestro",
+		notes = "Si el origen de datos maestro a actualizar no existe, lo crea",
+		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "String"
 	    )
+	@ApiResponses(value = { 
+	    @ApiResponse(code = 200, message = "Operación ejecutada correctamente"),
+		@ApiResponse(code = 500, message = "Se ha producido un error interno al ejecutar la operación")
+		})
 	@PUT
 	@Path("update")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -187,8 +215,13 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	}
 	
 	@ApiOperation(
-		value = "Borra el origen de datos maestro"
+		value = "Borra el origen de datos maestro",
+		tags = "Maestro de orígenes de datos"
 	    )
+	@ApiResponses(value = { 
+	    @ApiResponse(code = 200, message = "Operación ejecutada correctamente"),
+		@ApiResponse(code = 500, message = "Se ha producido un error interno al ejecutar la operación")
+		})
 	@DELETE
 	@Path("/delete/{code}")
 	public Response delete(@PathParam("code") String code)

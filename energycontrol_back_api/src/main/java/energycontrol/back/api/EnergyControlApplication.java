@@ -4,6 +4,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import io.swagger.jaxrs.config.BeanConfig;
+import io.swagger.models.Contact;
 import io.swagger.models.Info;
 
 
@@ -20,16 +21,26 @@ public class EnergyControlApplication extends Application
 		 *     	http://localhost:8080/energycontrol/api/swagger.json
 		 * 
 		 */
-
-	    BeanConfig beanConfig = new BeanConfig();
+		
+		
+		Contact contact = new Contact();
+	    contact.setName("Marcelino Barreiro");
+	    contact.setEmail("marcelino.barreiro@gmail.com");
+	    
 	    Info info = new Info();
 	    info.setVersion("1.0.0");
 	    info.setTitle("Energy Control");
+	    info.setDescription("API REST con servicios para controlar la energía eléctrica consumida.");
+	    info.setContact(contact);
+	    
+	    BeanConfig beanConfig = new BeanConfig();
 	    beanConfig.getSwagger().info(info);
 	    beanConfig.setSchemes(new String[]{"http"});
 		beanConfig.setHost("localhost:8080");
 		beanConfig.setBasePath("/energycontrol/api");
 		beanConfig.setResourcePackage("energycontrol.back.api");
 		beanConfig.setScan(true);
+		
+		
 	}
 }
