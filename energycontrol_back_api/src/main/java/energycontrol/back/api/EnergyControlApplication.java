@@ -30,7 +30,7 @@ public class EnergyControlApplication extends Application
 	    Info info = new Info();
 	    info.setVersion("1.0.0");
 	    info.setTitle("Energy Control");
-	    info.setDescription("API REST con servicios para controlar la energía eléctrica consumida.");
+	    info.setDescription("API con servicios REST para controlar la energía eléctrica consumida.");
 	    info.setContact(contact);
 	    
 	    BeanConfig beanConfig = new BeanConfig();

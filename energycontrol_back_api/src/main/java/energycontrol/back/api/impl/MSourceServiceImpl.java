@@ -27,7 +27,7 @@ import mbt.utilities.ActionResult;
 import mbt.utilities.EResult;
 import mbt.utilities.GenericActionResult;
 
-@Api
+@Api(tags= {"Maestro de orígenes de datos"})
 @Path("/MSources")
 public class MSourceServiceImpl extends EnergyControlApiService  implements MSourceService
 {
@@ -36,7 +36,6 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	@ApiOperation(
 		value = "Listado del maestro de orígenes de datos",
 		notes = "Devuelve todo el maestro de orígenes de datos",
-		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "List"
 	    )
@@ -70,7 +69,6 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	@ApiOperation(
 		value = "Origen de datos maestro por código",
 		notes = "Devuelve el origen de datos maestro con código igual al pasado por argumento",
-		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "String"
 	    )
@@ -113,7 +111,6 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	@ApiOperation(
 		value = "Crea un nuevo origen de datos maestro",
 		notes = "No debe exitir ya otro origen de datos maestro con el mismo código",
-		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "String"
 	    )
@@ -175,7 +172,6 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	@ApiOperation(
 		value = "Actualiza el origen de datos maestro",
 		notes = "Si el origen de datos maestro a actualizar no existe, lo crea",
-		tags = "Maestro de orígenes de datos",
 	    response = MSource.class,
 	    responseContainer = "String"
 	    )
@@ -215,8 +211,7 @@ public class MSourceServiceImpl extends EnergyControlApiService  implements MSou
 	}
 	
 	@ApiOperation(
-		value = "Borra el origen de datos maestro",
-		tags = "Maestro de orígenes de datos"
+		value = "Borra el origen de datos maestro"
 	    )
 	@ApiResponses(value = { 
 	    @ApiResponse(code = 200, message = "Operación ejecutada correctamente"),
